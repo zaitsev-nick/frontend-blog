@@ -3,15 +3,15 @@ export interface PostType {
   title: string; 
   description: string; 
   text: string; 
-  image: string; 
-  createdAt: string,
-  category: string,
-  catSlug: string,
-  tags: [number],
+  image?: string; 
+  createdAt: string;
+  catSlug: string;
+  tags: [number];
 }
 
 export interface CategoryType {
   id: Key; 
-  name: string; 
-  posts: [],
+  name: string;
+  slug: string;
+  posts: [];
 }

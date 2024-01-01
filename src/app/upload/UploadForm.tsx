@@ -20,7 +20,6 @@ export default function Home() {
       description,
       text,
       image,
-      category,
       catSlug,
       tags,
     } = data;
@@ -36,7 +35,6 @@ export default function Home() {
           description,
           text,
           image,
-          category,
           catSlug,
           tags,
         }),

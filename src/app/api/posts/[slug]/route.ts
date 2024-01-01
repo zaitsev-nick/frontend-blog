@@ -3,15 +3,15 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
 
-  let id = request.url.split('/').pop();
+  let slug = request.url.split('/').pop();
 
-  if(!id) {
-    id = request.url.split('/').pop();
+  if(!slug) {
+    slug = request.url.split('/').pop();
   }
 
   const post = await db.post.findUnique({
     where: {
-      id: parseInt(id as string)
+      catSlug: slug
     },
   })
 

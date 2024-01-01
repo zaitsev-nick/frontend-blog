@@ -12,7 +12,6 @@ export async function POST(req: Request) {
       text,
       image,
       createdAt,
-      category,
       catSlug,
       tags,
     } = body;
@@ -24,7 +23,6 @@ export async function POST(req: Request) {
         text,
         image,
         createdAt,
-        category,
         catSlug,
         tags,
       }
