@@ -5,7 +5,9 @@ export interface PostType {
   text: string; 
   image: string; 
   createdAt: string,
-  categories: [],
+  category: string,
+  catSlug: string,
+  tags: [number],
 }
 
 export interface CategoryType {

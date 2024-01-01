@@ -18,7 +18,7 @@ export default function JokesGrid() {
     <>
  <div className="items-center w-10/12 grid-cols-2 mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-5" data-aos="fade-right" data-aos-duration="800">
           <div className="pr-2 md:mb-14 py-14 md:py-0">
-            <h1 className="text-3xl font-semibold text-violet-600 xl:text-5xl lg:text-3xl"><span className="block w-full">Get a financial experience</span> for growing your business!</h1>
+            <h1 className="text-3xl font-semibold text-violet-600 xl:text-5xl lg:text-3xl"><span className="block w-full">Invite senior developers </span>to join your team</h1>
             <p className="py-4 text-lg text-gray-500 2xl:py-8 md:py-6 2xl:pr-5">
               Empowering you to make better financial decisions, We truly are professional money planners...
             </p>
@@ -70,9 +70,9 @@ export default function JokesGrid() {
   </div>
   <div className="relative mx-auto max-w-7xl">
     <div className="text-center">
-      <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Column me neatly.</h2>
+      <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">The latest articles and guides.</h2>
       <p className="mx-auto mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">
-        This is your life and it's ending one minute @ a time...</p>
+      Useful articles from the world of Web development.</p>
     </div>
     <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
 

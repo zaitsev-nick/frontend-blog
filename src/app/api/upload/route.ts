@@ -12,7 +12,9 @@ export async function POST(req: Request) {
       text,
       image,
       createdAt,
-      categories
+      category,
+      catSlug,
+      tags,
     } = body;
 
     const newPost = await db.post.create({
@@ -22,7 +24,9 @@ export async function POST(req: Request) {
         text,
         image,
         createdAt,
-        categories,
+        category,
+        catSlug,
+        tags,
       }
     });
 

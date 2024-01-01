@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import type { Joke } from '@/types/types'
+import type { PostType } from '@/types/types';
+import Loading from '@/components/Loading';
 
 export default function Home() {
   const router = useRouter();
@@ -10,10 +11,19 @@ export default function Home() {
   const [imageSrc, setImageSrc] = useState<any>();
   const [uploadData, setUploadData] = useState();
   const [title, setTitle] = useState<EventTarget & HTMLInputElement | string>();
+  const [description, setDescription] = useState<EventTarget & HTMLInputElement | string>();
   const [text, setText] = useState<EventTarget & HTMLInputElement | string>();
 
-  const addToDatabase = async (data: Joke) => {
-    const { width, height, format, bytes, secure_url } = data;
+  const addToDatabase = async (data: PostType) => {
+    const {       
+      title, 
+      description,
+      text,
+      image,
+      category,
+      catSlug,
+      tags,
+    } = data;
  
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload`, {
@@ -22,19 +32,19 @@ export default function Home() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          image_url: secure_url,
-          title,
+          title, 
+          description,
           text,
-          width,
-          height,
-          format,
-          bytes,
+          image,
+          category,
+          catSlug,
+          tags,
         }),
       });
       const data = await response.json();
 
       if(data) {
-        router.push(`${process.env.NEXT_PUBLIC_URL}/joke/${data?.joke?.id}`)
+        router.push(`${process.env.NEXT_PUBLIC_URL}/post/${data?.post?.id}`)
       } else {
         console.log('failed upload')
       }
@@ -87,15 +97,9 @@ export default function Home() {
 
   return (
     <>
-      {loading ? (
-        <div className="inline-block h-10 w-10 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
-          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
-        </div>
-      ) : (
+      {loading ? (<Loading />) : (
         <div className="mt-6 m-auto space-y-6 w-full sm:w-8/12 md:w-7/12">
-        <h1 className="font-mono text-2xl lg:text-4xl mt-4 text-center">
-        Add IT Joke
-        </h1>
+  
         <form className="" method="post" onSubmit={handleOnSubmit}>
         <div className="relative border-2 border-gray-300 border-dashed rounded-lg p-6 mb-2" id="dropzone">
           <input type="file" name="file" accept="image/*" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 z-50" />
@@ -117,34 +121,37 @@ export default function Home() {
 
         </div>
 
-        {imageSrc && !uploadData && (
-          <div className="bg-white py-4 rounded">
-            <div className="relative bg-inherit">
-              <input type="text" id="title" name="title" className=" peer bg-transparent w-full rounded text-gray-900 placeholder-transparent ring-2 px-2 ring-gray-900 focus:outline-none focus:border-gray-900" onChange={(e) => setTitle(e.target.value)} placeholder="Type joke title here"/>
-              <label htmlFor="title" className="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-gray-500 peer-focus:text-sm transition-all">Type joke title here</label>
-            </div>
-          </div>
-        )}
-        
         <img src={imageSrc} />
 
-        {imageSrc && !uploadData && (
-          <div className="bg-white py-4 rounded">
-            <div className="relative bg-inherit">
-              <textarea id="text" name="text" className=" peer bg-transparent w-full rounded text-gray-900 placeholder-transparent ring-2 px-2 ring-gray-900 focus:outline-none focus:border-gray-900" onChange={(e) => setText(e.target.value)} placeholder="Type joke"/>
-              <label htmlFor="text" className="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-gray-500 peer-focus:text-sm transition-all">Joke text</label>
-            </div>
+        <div className="bg-white py-4 rounded">
+          <div className="relative bg-inherit">
+            <input type="text" id="title" name="title" className=" peer bg-transparent w-full rounded text-gray-900 placeholder-transparent ring-2 px-2 ring-violet-700 focus:outline-none focus:border-violet-700" onChange={(e) => setTitle(e.target.value)} placeholder="Title"/>
+            <label htmlFor="title" className="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-gray-500 peer-focus:text-sm transition-all">Title</label>
           </div>
-        )}
+        </div>
+
+        <div className="bg-white py-4 rounded">
+          <div className="relative bg-inherit">
+            <textarea id="description" name="description" className=" peer bg-transparent w-full rounded text-gray-900 placeholder-transparent ring-2 px-2 ring-violet-700 focus:outline-none focus:border-violet-700" onChange={(e) => setDescription(e.target.value)} placeholder="Description"/>
+            <label htmlFor="description" className="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-gray-500 peer-focus:text-sm transition-all">Description</label>
+          </div>
+        </div>
         
-        {imageSrc && !uploadData && (
-          <div>
-            <button className="relative">
-              <span className="absolute top-0 left-0 mt-1 ml-1 h-full w-full rounded bg-black"></span>
-              <span className="fold-bold relative inline-block h-full w-full rounded border-2 border-black bg-white px-3 py-1 text-base font-bold text-black transition duration-100 hover:bg-yellow-400 hover:text-gray-900">Add this joke</span>
-            </button>
+        <div className="bg-white py-4 rounded">
+          <div className="relative bg-inherit">
+            <textarea id="text" name="text" className=" peer bg-transparent w-full rounded text-gray-900 placeholder-transparent ring-2 px-2 ring-violet-700 focus:outline-none focus:border-violet-700" rows={40} onChange={(e) => setText(e.target.value)} placeholder="Post text"/>
+            <label htmlFor="text" className="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-gray-500 peer-focus:text-sm transition-all">Text</label>
           </div>
-        )}
+        </div>
+
+        <div>
+          <button className="relative">
+            <a className="group flex h-min items-center disabled:opacity-50 disabled:hover:opacity-50 hover:opacity-95 justify-center ring-none  rounded-lg shadow-lg font-semibold py-2 px-4 font-dm focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2  bg-violet-500 border-b-violet-700 disabled:border-0 disabled:bg-violet-500 disabled:text-white ring-white text-white border-b-4 hover:border-0 active:border-0 hover:text-gray-100 active:bg-violet-800 active:text-gray-300 focus-visible:outline-violet-500 text-sm sm:text-base"
+                href="">
+                Add post
+            </a>
+          </button>
+        </div>
 
       </form>
       </div>

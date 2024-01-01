@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import UploadForm from './UploadForm';
 
 export const metadata: Metadata = {
-  title: 'Upload hentai gif',
-  description: 'You can upload and share your favorite gifs',
+  title: 'Upload Post',
+  description: '',
 }
 
 export default function UploadPage() {

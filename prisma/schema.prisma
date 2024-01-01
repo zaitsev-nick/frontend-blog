@@ -15,13 +15,16 @@ model Post {
   title       String
   description String
   text        String
-  image       String
+  image       String?
   createdAt   DateTime   @default(now())
-  categories  Category[]
+  category    Category   @relation(fields: [catSlug], references: [slug])
+  catSlug     String     @unique
+  tags        Json?
 }
 
 model Category {
   id          Int        @id @default(autoincrement())
   name        String
+  slug        String     @unique
   posts       Post[]
 }
