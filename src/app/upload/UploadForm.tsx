@@ -13,6 +13,7 @@ export default function Home() {
   const [title, setTitle] = useState<EventTarget & HTMLInputElement | string>();
   const [description, setDescription] = useState<EventTarget & HTMLInputElement | string>();
   const [text, setText] = useState<EventTarget & HTMLInputElement | string>();
+  const [tags, setTags] = useState<EventTarget & HTMLInputElement | string>();
 
   const addToDatabase = async (data: PostType) => {
     const {       
@@ -142,9 +143,16 @@ export default function Home() {
           </div>
         </div>
 
+        <div className="bg-white py-4 rounded">
+          <div className="relative bg-inherit">
+            <input type="text" id="tags" name="tags" className=" peer bg-transparent w-full rounded text-gray-900 placeholder-transparent ring-2 px-2 ring-violet-700 focus:outline-none focus:border-violet-700" onChange={(e) => setTags(e.target.value)} placeholder="Tags"/>
+            <label htmlFor="tags" className="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-gray-500 peer-focus:text-sm transition-all">Tags</label>
+          </div>
+        </div>
+
         <div>
           <button className="relative">
-            <a className="group flex h-min items-center disabled:opacity-50 disabled:hover:opacity-50 hover:opacity-95 justify-center ring-none  rounded-lg shadow-lg font-semibold py-2 px-4 font-dm focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2  bg-violet-500 border-b-violet-700 disabled:border-0 disabled:bg-violet-500 disabled:text-white ring-white text-white border-b-4 hover:border-0 active:border-0 hover:text-gray-100 active:bg-violet-800 active:text-gray-300 focus-visible:outline-violet-500 text-sm sm:text-base"
+            <a className="group flex h-min items-center disabled:opacity-50 disabled:hover:opacity-50 hover:opacity-95 justify-center ring-none  rounded-lg shadow-lg font-semibold font-dm focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2  bg-violet-500 border-b-violet-700 disabled:border-0 disabled:bg-violet-500 disabled:text-white ring-white text-white border-b-4 hover:border-0 active:border-0 hover:text-gray-100 active:bg-violet-800 active:text-gray-300 focus-visible:outline-violet-500 text-sm sm:text-base px-8 py-3"
                 href="">
                 Add post
             </a>

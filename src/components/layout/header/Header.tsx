@@ -8,8 +8,8 @@ export function Header() {
     <header className={cx(styles.header, "bg-gradient-to-r from-purple-400 to-indigo-600 dark:from-purple-700 dark:to-indigo-700 py-4")}>
       <div className='container mx-auto flex flex-wrap p-5 flex-col md:flex-row justify-between'>
         <Link href='/' className='flex md:w-2/5 title-font font-medium items-center md:justify-start justify-center  mb-4 md:mb-0'>
-        <button className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:shadow-lg">
-          &lt; JS Dev /&gt;
+        <button className="text-lg px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:shadow-lg">
+          &#10100; JS Dev &#10101;
         </button>
         </Link> 
         <Link href='/upload' className='relative'>
