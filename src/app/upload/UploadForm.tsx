@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import type { PostType } from '@/types/types';
+import type { PostType, TagType } from '@/types/types';
 import Loading from '@/components/Loading';
+import TagsInForm from '@/components/tags/TagsInForm';
 
-export default function Home() {
+export default function UploadForm() {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
   const [imageSrc, setImageSrc] = useState<any>();
@@ -13,7 +14,8 @@ export default function Home() {
   const [title, setTitle] = useState<EventTarget & HTMLInputElement | string>();
   const [description, setDescription] = useState<EventTarget & HTMLInputElement | string>();
   const [text, setText] = useState<EventTarget & HTMLInputElement | string>();
-  const [tags, setTags] = useState<EventTarget & HTMLInputElement | string>();
+  const [tags, setTags] = useState([]);
+
 
   const addToDatabase = async (data: PostType) => {
     const {       
@@ -94,6 +96,17 @@ export default function Home() {
 
   }
 
+  const handleTagSelect = (tag: TagType) => {
+    const alredySelected = tags.find((element: TagType) => element.id === tag.id);
+
+    if(alredySelected) {
+      const updatedTags = tags.filter((element: TagType) => element.id !== tag.id);
+      setTags(updatedTags);
+    } else {
+      setTags([...tags, tag]);
+    }
+  }
+
   return (
     <>
       {loading ? (<Loading />) : (
@@ -143,12 +156,9 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="bg-white py-4 rounded">
-          <div className="relative bg-inherit">
-            <input type="text" id="tags" name="tags" className=" peer bg-transparent w-full rounded text-gray-900 placeholder-transparent ring-2 px-2 ring-violet-700 focus:outline-none focus:border-violet-700" onChange={(e) => setTags(e.target.value)} placeholder="Tags"/>
-            <label htmlFor="tags" className="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-gray-500 peer-focus:text-sm transition-all">Tags</label>
-          </div>
-        </div>
+ 
+
+        <TagsInForm handleTagSelect={handleTagSelect} selectedTags={tags} />
 
         <div>
           <button className="relative">

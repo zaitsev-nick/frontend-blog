@@ -15,3 +15,10 @@ export interface CategoryType {
   slug: string;
   posts: [];
 }
+
+export interface TagType {
+  id: Key; 
+  name: string;
+  slug: string;
+  posts: [];
+}
