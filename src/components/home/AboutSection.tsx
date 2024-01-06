@@ -14,7 +14,7 @@ export default function AboutSection() {
           JavaScript & TypeScript<br /> 
           Front-end / Back-end / Game development
         </p>
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         <TagsBlock />
       </div>
     </div>

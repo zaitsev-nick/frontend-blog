@@ -17,14 +17,8 @@ export default function UploadForm() {
   const [tags, setTags] = useState<any>([]);
 
 
-  const addToDatabase = async (data: PostType) => {
-    const {       
-      title, 
-      description,
-      text,
-      image,
-      tags,
-    } = data;
+  const addToDatabase = async (data: any) => {
+    const { secure_url } = data;
  
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload`, {
@@ -36,14 +30,15 @@ export default function UploadForm() {
           title, 
           description,
           text,
-          image,
+          image: secure_url,
           tags,
         }),
       });
       const data = await response.json();
 
       if(data) {
-        router.push(`${process.env.NEXT_PUBLIC_URL}/post/${data?.post?.id}`)
+        //router.push(`${process.env.NEXT_PUBLIC_URL}/post/${data?.post?.id}`)
+        console.log(data)
       } else {
         console.log('failed upload')
       }
@@ -71,6 +66,8 @@ export default function UploadForm() {
     const fileInput = Array.from<any>(form.elements).find(({ name }: any) => name === 'file');
 
     const formData = new FormData();
+
+    console.log(formData)
 
     for (const file of fileInput.files) {
       formData.append('file', file);
@@ -156,16 +153,13 @@ export default function UploadForm() {
 
         <TagsInForm handleTagSelect={handleTagSelect} selectedTags={tags} />
 
-        <div>
-          <button className="relative">
-            <a className="group flex h-min items-center disabled:opacity-50 disabled:hover:opacity-50 hover:opacity-95 justify-center ring-none  rounded-lg shadow-lg font-semibold font-dm focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2  bg-violet-500 border-b-violet-700 disabled:border-0 disabled:bg-violet-500 disabled:text-white ring-white text-white border-b-4 active:border-0 hover:text-gray-100 active:bg-violet-800 active:text-gray-300 focus-visible:outline-violet-500 text-sm sm:text-base px-8 py-3"
-                href="">
-                Add post
-            </a>
+        <div className="relative">
+          <button className="group flex h-min items-center disabled:opacity-50 disabled:hover:opacity-50 hover:opacity-95 justify-center ring-none  rounded-lg shadow-lg font-semibold font-dm focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2  bg-violet-500 border-b-violet-700 disabled:border-0 disabled:bg-violet-500 disabled:text-white ring-white text-white border-b-4 active:border-0 hover:text-gray-100 active:bg-violet-800 active:text-gray-300 focus-visible:outline-violet-500 text-sm sm:text-base px-8 py-3">
+            add
           </button>
         </div>
 
-      </form>
+        </form>
       </div>
       )}
         
