@@ -14,7 +14,7 @@ export default function UploadForm() {
   const [title, setTitle] = useState<EventTarget & HTMLInputElement | string>();
   const [description, setDescription] = useState<EventTarget & HTMLInputElement | string>();
   const [text, setText] = useState<EventTarget & HTMLInputElement | string>();
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState<any>([]);
 
 
   const addToDatabase = async (data: PostType) => {
@@ -162,7 +162,7 @@ export default function UploadForm() {
 
         <div>
           <button className="relative">
-            <a className="group flex h-min items-center disabled:opacity-50 disabled:hover:opacity-50 hover:opacity-95 justify-center ring-none  rounded-lg shadow-lg font-semibold font-dm focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2  bg-violet-500 border-b-violet-700 disabled:border-0 disabled:bg-violet-500 disabled:text-white ring-white text-white border-b-4 hover:border-0 active:border-0 hover:text-gray-100 active:bg-violet-800 active:text-gray-300 focus-visible:outline-violet-500 text-sm sm:text-base px-8 py-3"
+            <a className="group flex h-min items-center disabled:opacity-50 disabled:hover:opacity-50 hover:opacity-95 justify-center ring-none  rounded-lg shadow-lg font-semibold font-dm focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2  bg-violet-500 border-b-violet-700 disabled:border-0 disabled:bg-violet-500 disabled:text-white ring-white text-white border-b-4 active:border-0 hover:text-gray-100 active:bg-violet-800 active:text-gray-300 focus-visible:outline-violet-500 text-sm sm:text-base px-8 py-3"
                 href="">
                 Add post
             </a>
