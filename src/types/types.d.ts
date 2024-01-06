@@ -5,15 +5,7 @@ export interface PostType {
   text: string; 
   image?: string; 
   createdAt: string;
-  catSlug: string;
-  tags: [number];
-}
-
-export interface CategoryType {
-  id: Key; 
-  name: string;
-  slug: string;
-  posts: [];
+  tags: [];
 }
 
 export interface TagType {
