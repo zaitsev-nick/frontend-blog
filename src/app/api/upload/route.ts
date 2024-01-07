@@ -6,24 +6,23 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
   const body = await req.json();
 
-  console.log(body)
   try {
     const { 
+      slug,
       title, 
       description,
       text,
       image,
-      createdAt,
       tags,
     } = body;
 
     const newPost = await db.post.create({
       data: {
+        slug,
         title,
         description,
         text,
         image,
-        createdAt,
         tags,
       }
     });

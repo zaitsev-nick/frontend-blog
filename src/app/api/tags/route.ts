@@ -5,7 +5,7 @@ export async function GET(request: Request) {
 
   const tags = await db.tag.findMany({
     orderBy: {
-      id: 'desc',
+      id: 'asc',
     }
   });
  

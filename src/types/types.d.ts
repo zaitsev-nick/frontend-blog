@@ -1,5 +1,6 @@
 export interface PostType {
   id: Key; 
+  slug: string; 
   title: string; 
   description: string; 
   text: string; 
@@ -12,5 +13,4 @@ export interface TagType {
   id: Key; 
   name: string;
   slug: string;
-  posts: [];
 }
