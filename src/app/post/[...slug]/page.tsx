@@ -1,17 +1,8 @@
 import { Metadata } from 'next';
 import { PostItem } from '@/components/layout/post/PostItem';
 
-//  Return a list of `params` to populate the [id] dynamic segment
-/*export async function generateStaticParams() {
-  const posts = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`).then((res) => res.json());
- 
-  return posts.map((post: { id: number }) => ({
-    id: `${post.id}`,
-  }));
-}*/
-
 type Props = {
-  params: { id: string }
+  params: { slug: string }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -24,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: post.title,
       description: post.description,
-      url: `${process.env.NEXT_PUBLIC_URL}/post/${post.id}`,
+      url: `${process.env.NEXT_PUBLIC_URL}/post/${post.slug}`,
       siteName: 'JS development',
       locale: 'en_US',
       type: 'website',
@@ -38,8 +29,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-async function getPost(params: { id: string }) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts/${params.id}`, {
+async function getPost(params: { slug: string }) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts/${params.slug}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'

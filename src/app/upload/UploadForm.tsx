@@ -124,7 +124,7 @@ export default function UploadForm() {
                   </label>
               </h3>
               <p className="mt-1 text-xs text-gray-500">
-                  Any image up to 3MB
+                  Any image 
               </p>
           </div>
 

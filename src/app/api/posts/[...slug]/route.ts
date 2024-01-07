@@ -11,7 +11,7 @@ export async function GET(request: Request) {
 
   const post = await db.post.findUnique({
     where: {
-      catSlug: slug
+      slug: slug
     },
   })
 

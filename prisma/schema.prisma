@@ -19,6 +19,7 @@ model Post {
   image       String?
   createdAt   DateTime   @default(now())
   tags        Json?
+  likes       Int   @default(0)
 }
 
 model Tag {
