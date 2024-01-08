@@ -1,4 +1,5 @@
-export default function Loading() {
+export default function Loading({ props }) {
+  const { spinnerSize } = props;
   return (
     <div className="absolute right-1/2 bottom-1/2 transform translate-x-1/2 translate-y-1/2">
       <div className="p-4 bg-gradient-to-tr animate-spin from-green-500 to-blue-500 via-purple-500 rounded-full">

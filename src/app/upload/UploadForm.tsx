@@ -39,8 +39,7 @@ export default function UploadForm() {
       const data = await response.json();
 
       if(data) {
-        //router.push(`${process.env.NEXT_PUBLIC_URL}/post/${data?.post?.id}`)
-        console.log(data)
+        router.push(`${process.env.NEXT_PUBLIC_URL}/post/${data?.post?.slug}`)
       } else {
         console.log('failed upload')
       }
