@@ -10,7 +10,7 @@ export default function AboutSection() {
           <span className="block w-full">UI Frameworks and libraries</span>
           in Web development</h1>
         <p className="py-4 text-lg text-gray-500 2xl:py-8 md:py-6 2xl:pr-5">
-          Usefull atricles, exampless, tricks and more... <br />
+          Usefull atricles, examples, tricks and more... <br />
           JavaScript & TypeScript<br /> 
           Front-end / Back-end / Game development
         </p>

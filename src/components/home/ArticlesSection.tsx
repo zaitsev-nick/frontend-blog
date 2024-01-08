@@ -37,8 +37,6 @@ export default function ArticlesSection() {
     </div>
   ;
 
-  const spinnerSize = 24;
-
   return (
   <div className="relative mx-auto max-w-7xl mt-16 mb-16">
     <div className="text-center">
@@ -59,7 +57,7 @@ export default function ArticlesSection() {
         onClick={(event) => {event.preventDefault(); setSize(size + 1)}}
       >
       {isLoadingMore
-        ? <Loading props={spinnerSize} />
+        ? <Loading spinnerSize={12}/>
         : isReachingEnd
         ? null
         : viewMore
