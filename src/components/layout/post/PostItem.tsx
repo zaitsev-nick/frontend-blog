@@ -4,6 +4,7 @@ import styles from './PostItem.module.scss';
 import cx from 'classnames';
 import parse from 'html-react-parser';
 import { TagType } from '@/types/types'
+import { ScrollTop } from '@/components/layout/post/ScrollTop'
 
 export function PostItem({ props }: { props: PostType }) {
   const { image, title, description, text, id, createdAt, tags, likes } = props;
@@ -29,7 +30,7 @@ export function PostItem({ props }: { props: PostType }) {
         </div>
       </article>
   
-      <div className='flex gap-3 mb-5'>
+      <div className='flex gap-3 my-16 justify-center'>
       {tags?.map((tag: TagType) => (
         <div key={tag.id} 
               draggable="true" 
@@ -40,6 +41,8 @@ export function PostItem({ props }: { props: PostType }) {
         </div>
       ))}
       </div>
+
+      <ScrollTop />
 
     </>
   )
