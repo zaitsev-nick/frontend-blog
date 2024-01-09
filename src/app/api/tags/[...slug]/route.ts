@@ -11,7 +11,9 @@ export async function GET(request: Request) {
 
   const posts = await db.post.findMany({
     where: {
-      slug: slug
+      tags: {
+        array_contains: [{"slug": slug}],
+      },
     },
   })
 
