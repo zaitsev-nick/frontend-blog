@@ -6,7 +6,7 @@ export default function ArticleCard({ props }: { props: PostType }) {
   const { image, title, description, id, createdAt, likes, slug } = props;
 
   function goToPostPage(slug: string) {
-    router.push(`${process.env.NEXT_PUBLIC_URL}/post/${slug}`);
+    router.push(`${process.env.NEXT_PUBLIC_URL}/posts/${slug}`);
     return;
   }
 
@@ -17,7 +17,7 @@ export default function ArticleCard({ props }: { props: PostType }) {
     </div>
     <div className="flex flex-1 flex-col justify-between bg-white p-6">
       <div className="flex-1">
-        <a href={`${process.env.NEXT_PUBLIC_URL}/post/${slug}`} className="mt-2 block">
+        <a href={`${process.env.NEXT_PUBLIC_URL}/posts/${slug}`} className="mt-2 block">
           <p className="text-xl font-semibold text-gray-900">{title}</p>
           <p className="mt-3 text-base text-gray-500">{description}</p>
         </a>
