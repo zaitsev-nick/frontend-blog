@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { PostItem } from '@/components/layout/post/PostItem';
+import AllPosts from '@/components/layout/AllPosts';
 
 type Props = {
   params: { slug: string }
@@ -9,22 +9,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPost(params);
  
   return {
-    title: post.title,
-    description: post.description,
+    title: 'JS development articles',
+    description: 'JS development / Watch & Read Articles',
     metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}`),
     openGraph: {
-      title: post.title,
-      description: post.description,
-      url: `${process.env.NEXT_PUBLIC_URL}/posts/${post.slug}`,
+      title: 'JS development articles',
+      description: 'JS development / Watch & Read Articles',
+      url: `${process.env.NEXT_PUBLIC_URL}/posts`,
       siteName: 'JS development',
       locale: 'en_US',
       type: 'website',
-      images: [
-        {
-          url: post.image,
-          alt: post.title,
-        },
-      ],
     },
   }
 }
@@ -45,6 +39,6 @@ export default async function PostPage({ params }: Props) {
   const post = await getPost(params);
 
   return (
-    <PostItem props={post} />
+    <AllPosts />
   )
 }

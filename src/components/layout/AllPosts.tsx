@@ -1,25 +1,25 @@
- 
+ 'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { JokeInDB } from '@/types/types';
+import { PostType } from '@/types/types';
 import useSWR from 'swr';
 import { fetcher } from '@/lib/swr';
 
 const PAGE_SIZE = 20;
 
-export default function JokesGridDesktop() {
+export default function AllPosts() {
   const router = useRouter();
   const [pageIndex, setPageIndex] = useState(1);
 
-  const { data, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/jokes?page=${pageIndex}&per_page=${PAGE_SIZE}`, fetcher);
+  const { data, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/posts?page=${pageIndex}&per_page=${PAGE_SIZE}`, fetcher);
 
-  function goToJoke(id: number) {
-    router.push(`${process.env.NEXT_PUBLIC_URL}/joke/${id}`);
+  function goToPost(id: number) {
+    router.push(`${process.env.NEXT_PUBLIC_URL}/posts/${id}`);
     return;
   }
 
-  const jokes = data || [];
+  const posts = data || [];
   const isEmpty = data?.length === 0;
   const isReachingEnd = isEmpty || (data?.length < PAGE_SIZE);
 
@@ -49,7 +49,7 @@ export default function JokesGridDesktop() {
       {isLoading ? spinner : 
         <>
           <div className="columns-1 gap-5 sm:gap-8 md:columns-2 lg:columns-3 xl:columns-4 [&>img:not(:first-child)]:mt-8">
-            {jokes && jokes.map((item: JokeInDB) => <img onClick={() => goToJoke(item.id)} src={item.image_url} key={item.id} className="border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:shadow-sm cursor-pointer"></img>)}
+            {posts && posts.map((item: PostType) => <img onClick={() => goToPost(item.id)} src={item.image} key={item.id} className="border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:shadow-sm cursor-pointer"></img>)}
           </div>
           <div className='m-6 mt-12 flex place-content-around'>
             {pageIndex > 1 ? <button onClick={() => setPageIndex(pageIndex - 1)} className='flex'>
