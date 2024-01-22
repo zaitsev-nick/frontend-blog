@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { PostType } from '@/types/types';
 import useSWR from 'swr';
 import { fetcher } from '@/lib/swr';
+import ArticleCard from '@/components/card/ArticleCard';
 
 const PAGE_SIZE = 20;
 
@@ -45,11 +46,11 @@ export default function AllPosts() {
 
   return (
     <div className="p-5 sm:p-8">
-      {isEmpty ? <p>Yay, no jokes found.</p> : null}
+      {isEmpty ? <p>Yay, no posts found.</p> : null}
       {isLoading ? spinner : 
         <>
-          <div className="columns-1 gap-5 sm:gap-8 md:columns-2 lg:columns-3 xl:columns-4 [&>img:not(:first-child)]:mt-8">
-            {posts && posts.map((item: PostType) => <img onClick={() => goToPost(item.id)} src={item.image} key={item.id} className="border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:shadow-sm cursor-pointer"></img>)}
+          <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
+            {posts && posts.map((item: PostType) => <ArticleCard props={item} key={item.id} />)}
           </div>
           <div className='m-6 mt-12 flex place-content-around'>
             {pageIndex > 1 ? <button onClick={() => setPageIndex(pageIndex - 1)} className='flex'>
