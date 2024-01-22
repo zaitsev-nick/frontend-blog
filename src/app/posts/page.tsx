@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPost(params);
  
   return {
-    title: 'JS development articles',
+    title: 'JS and TS development articles',
     description: 'JS development / Watch & Read Articles',
     metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}`),
     openGraph: {
@@ -35,7 +35,7 @@ async function getPost(params: { slug: string }) {
   return data.post;
 }
  
-export default async function PostPage({ params }: Props) {
+export default async function AllPostsPage({ params }: Props) {
   const post = await getPost(params);
 
   return (

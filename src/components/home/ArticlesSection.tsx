@@ -51,7 +51,7 @@ export default function ArticlesSection() {
 
     </div>
 
-    <div className='m-6 flex place-content-center'>
+    <div className='my-16 flex place-content-center'>
       <button className='relative'
         disabled={isLoadingMore || isReachingEnd}
         onClick={(event) => {event.preventDefault(); setSize(size + 1)}}

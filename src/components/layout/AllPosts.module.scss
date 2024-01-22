@@ -1,0 +1,15 @@
+.nextButton {
+  background-image: url('/arrow-right-circle.svg');
+  background-size: 20px 20px;
+  background-position: 95% 57%;
+  background-repeat: no-repeat;
+  padding-right: 2rem;
+}
+
+.beforeButton {
+  background-image: url('/arrow-left-circle.svg');
+  background-size: 20px 20px;
+  background-position: 5% 57%;
+  background-repeat: no-repeat;
+  padding-left: 2rem;
+}

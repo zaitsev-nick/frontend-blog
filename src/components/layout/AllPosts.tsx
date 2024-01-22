@@ -6,8 +6,11 @@ import { PostType } from '@/types/types';
 import useSWR from 'swr';
 import { fetcher } from '@/lib/swr';
 import ArticleCard from '@/components/card/ArticleCard';
+import styles from './AllPosts.module.scss';
+import cx from 'classnames';
+import Loading from '../Loading';
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 3;
 
 export default function AllPosts() {
   const router = useRouter();
@@ -31,23 +34,23 @@ export default function AllPosts() {
   ;
 
   const prevPage = 
-  <a href="#"  className="relative">
-    <span className="absolute top-0 left-0 mt-1 ml-1 h-full w-full rounded bg-gray-700"></span>
-    <span className="fold-bold relative inline-block h-full w-full rounded border-2 border-black bg-black px-6 py-2 text-base font-bold text-white transition duration-100 hover:bg-gray-900 hover:text-yellow-500 ">◀&nbsp;&nbsp; Previous</span>
+  <a className={cx(styles.beforeButton, 'group flex h-min items-center disabled:opacity-50 disabled:hover:opacity-50 hover:opacity-95 justify-center ring-none  rounded-lg shadow-lg font-semibold py-2 px-4 font-dm focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2  bg-violet-500 border-b-violet-700 disabled:border-0 disabled:bg-violet-500 disabled:text-white ring-white text-white border-b-4 hover:border-0 active:border-0 hover:text-gray-100 active:bg-violet-800 active:text-gray-300 focus-visible:outline-violet-500 text-sm sm:text-base')}
+    href="#">
+    Page before
   </a>
   ;
 
   const nextPage = 
-    <a href="#"  className="relative">
-      <span className="absolute top-0 left-0 mt-1 ml-1 h-full w-full rounded bg-gray-700"></span>
-      <span className="fold-bold relative inline-block h-full w-full rounded border-2 border-black bg-black px-6 py-2 text-base font-bold text-white transition duration-100 hover:bg-gray-900 hover:text-yellow-500">Next &nbsp;&nbsp;▶</span>
-    </a>
+  <a className={cx(styles.nextButton, 'group flex h-min items-center disabled:opacity-50 disabled:hover:opacity-50 hover:opacity-95 justify-center ring-none  rounded-lg shadow-lg font-semibold py-2 px-4 font-dm focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2  bg-violet-500 border-b-violet-700 disabled:border-0 disabled:bg-violet-500 disabled:text-white ring-white text-white border-b-4 hover:border-0 active:border-0 hover:text-gray-100 active:bg-violet-800 active:text-gray-300 focus-visible:outline-violet-500 text-sm sm:text-base')}
+    href="#">
+    Next page 
+  </a>
   ;
 
   return (
     <div className="p-5 sm:p-8">
       {isEmpty ? <p>Yay, no posts found.</p> : null}
-      {isLoading ? spinner : 
+      {isLoading ? <Loading spinnerSize={24} /> : 
         <>
           <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
             {posts && posts.map((item: PostType) => <ArticleCard props={item} key={item.id} />)}
