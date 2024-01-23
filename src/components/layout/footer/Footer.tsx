@@ -9,7 +9,10 @@ export function Footer() {
         <Link href='/' className='flex md:w-1/5 title-font font-medium items-center md:justify-start mb-4 md:mb-0 text-white'>
           <span className='ml-3 text-xl'>&#10100; JS Dev &#10101;</span>
         </Link> 
-        <div></div>
+        <a href='https://zaitsau.pro/' target='_blank' className='flex text-gray-100' aria-label='developed by Mick Zaitsau'>
+          <img src="/code.svg" className='px-2'></img> 
+          Mick Z.
+        </a>
       </div>
     </footer>
   )

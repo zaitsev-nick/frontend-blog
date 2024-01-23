@@ -1,5 +1,5 @@
 import Loading from '@/components/Loading';
 
 export default function LoadingPage() {
-  return <Loading spinnerSize={24} />
+  return <Loading spinnerSize={12} />
 }

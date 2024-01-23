@@ -50,15 +50,15 @@ export default function AllPosts() {
   return (
     <div className="p-5 sm:p-8">
       {isEmpty ? <p>Yay, no posts found.</p> : null}
-      {isLoading ? <Loading spinnerSize={24} /> : 
+      {isLoading ? <Loading spinnerSize={12} /> : 
         <>
           <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
             {posts && posts.map((item: PostType) => <ArticleCard props={item} key={item.id} />)}
           </div>
-          <div className='m-6 mt-12 flex place-content-around'>
+          <div className='my-6 mt-12 flex place-content-between'>
             {pageIndex > 1 ? <button onClick={() => setPageIndex(pageIndex - 1)} className='flex'>
               {prevPage}
-            </button> : null}
+            </button> : <div></div>}
 
             {isReachingEnd ? null : <button 
               disabled={isReachingEnd}
