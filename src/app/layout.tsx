@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { Inter } from 'next/font/google';
-import Script from 'next/script'
 import './globals.scss';
 
 import LayoutMain from '@/components/layout/LayoutMain';
@@ -30,7 +29,6 @@ export default function RootLayout({
       </LayoutMain>
       </body>
       {/*<GoogleTagManager gtmId="G-D9V5VE179P" />*/}
-      <Script src="/prism.js" />
     </html>
   )
 }

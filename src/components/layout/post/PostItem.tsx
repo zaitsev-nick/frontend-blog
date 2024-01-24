@@ -1,13 +1,26 @@
+'use client';
+
 import ShareButtons from '@/components/share/ShareButtons';
+import { useEffect } from 'react';
 import { PostType } from '@/types/types';
 import styles from './PostItem.module.scss';
 import cx from 'classnames';
 import parse from 'html-react-parser';
-import { TagType } from '@/types/types'
-import { ScrollTop } from '@/components/layout/post/ScrollTop'
+import { TagType } from '@/types/types';
+import { ScrollTop } from '@/components/layout/post/ScrollTop';
+import Prism from "prismjs";
+//start:load the languages you need for your blog here
+import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-tsx";
+//end:load the languages you need for your blog here
+import "prismjs/themes/prism-tomorrow.min.css";
 
 export function PostItem({ props }: { props: PostType }) {
-  const { image, title, description, text, id, createdAt, tags, likes } = props;
+  let { image, title, description, text, id, createdAt, tags, likes } = props;
+
+  useEffect(() => {
+    Prism.highlightAll()
+  }, [])
 
   return (
     <>

@@ -1,18 +1,29 @@
 .article {
   margin-bottom: 2rem;
+  background-color: #fff;
   
   p {
     padding-bottom: 1.5rem;;
   }
   h2 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     line-height: 2rem;
-    padding: 10px 0 5px;
+    padding: 10px 0;
   }
   img {
     margin: 20px 0;
     border-radius: 10px;
   }
-  
+  .code {
+    color: chocolate;
+  }
+  .note {
+    color: gray;
+  }
+  ul > li {
+    list-style: round($number: 5);
+  }
 }
+
+
