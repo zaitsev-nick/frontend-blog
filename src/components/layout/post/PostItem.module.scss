@@ -15,15 +15,16 @@
     margin: 20px 0;
     border-radius: 10px;
   }
-  .code {
+  span {
     color: chocolate;
   }
   .note {
     color: gray;
   }
   ul > li {
-    list-style: round($number: 5);
+    list-style: initial;
   }
 }
+
 
 

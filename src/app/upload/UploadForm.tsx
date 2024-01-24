@@ -39,7 +39,7 @@ export default function UploadForm() {
       const data = await response.json();
 
       if(data) {
-        router.push(`${process.env.NEXT_PUBLIC_URL}/post/${data?.post?.slug}`)
+        router.push(`${process.env.NEXT_PUBLIC_URL}/posts/${data?.post?.slug}`)
       } else {
         console.log('failed upload')
       }
@@ -67,8 +67,6 @@ export default function UploadForm() {
     const fileInput = Array.from<any>(form.elements).find(({ name }: any) => name === 'file');
 
     const formData = new FormData();
-
-    console.log(formData)
 
     for (const file of fileInput.files) {
       formData.append('file', file);
@@ -118,7 +116,7 @@ export default function UploadForm() {
                   <label htmlFor="file-upload" className="relative cursor-pointer">
                       <span>Drag and drop</span>
                       <span className="text-indigo-600"> or browse </span>
-                      <span>to upload joke image</span>
+                      <span>to upload article image</span>
                       <input id="file-upload" name="file-upload" type="file" className="sr-only" />
                   </label>
               </h3>
@@ -157,6 +155,14 @@ export default function UploadForm() {
             <textarea id="text" name="text" className=" peer bg-transparent w-full rounded text-gray-900 placeholder-transparent ring-2 px-2 ring-violet-700 focus:outline-none focus:border-violet-700" rows={20} onChange={(e) => setText(e.target.value)} placeholder="Post text"/>
             <label htmlFor="text" className="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-gray-500 peer-focus:text-sm transition-all">Text</label>
           </div>
+        </div>
+
+        <div className='bg-gray-300 p-5 mb-5'>
+          <p>{`<  = &lt;   >  = &gt; `}</p>
+          <p>{`<span>code in text</span>`}</p>
+          <p>{`<pre class="language-javascript"><code> language -css -javascript -typescript etc </code></pre>`}</p>
+          <p></p>
+
         </div>
 
         <TagsInForm handleTagSelect={handleTagSelect} selectedTags={tags} />
