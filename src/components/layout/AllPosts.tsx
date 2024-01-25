@@ -10,7 +10,7 @@ import styles from './AllPosts.module.scss';
 import cx from 'classnames';
 import Loading from '../Loading';
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 21;
 
 export default function AllPosts() {
   const router = useRouter();

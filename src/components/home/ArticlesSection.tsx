@@ -6,7 +6,7 @@ import { fetcher } from '@/lib/swr';
 import ArticleCard from '@/components/card/ArticleCard';
 import Loading from '@/components/Loading';
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 6;
 
 export default function ArticlesSection() {
 

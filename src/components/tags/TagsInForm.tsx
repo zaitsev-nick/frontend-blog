@@ -17,7 +17,7 @@ export default function TagsInForm({ handleTagSelect, selectedTags }: Props) {
   if (isLoading) return 'Loading...';
   return (
    <>
-    <div className='flex gap-3 mb-5'>
+    <div className='flex gap-3 mb-5 flex-wrap'>
       {data?.map((tag: TagType) => (
         <div key={tag.id} 
              onClick={() => handleTagSelect(tag)} 
@@ -30,7 +30,7 @@ export default function TagsInForm({ handleTagSelect, selectedTags }: Props) {
       ))}
     </div>
     <hr></hr>
-    <div className='flex gap-3 mt-5 mb-20'>
+    <div className='flex gap-3 mt-5 mb-20 flex-wrap'>
       {selectedTags?.map((tag: TagType) => (
         <div key={tag.id} 
              onClick={() => handleTagSelect(tag)} 

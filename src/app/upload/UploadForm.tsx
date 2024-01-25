@@ -12,7 +12,7 @@ export default function UploadForm() {
   const [imageSrc, setImageSrc] = useState<any>();
   const [uploadData, setUploadData] = useState();
   const [title, setTitle] = useState<EventTarget & HTMLInputElement | string>();
-  const [slug, setSlug] = useState<EventTarget & HTMLInputElement | string>();
+  const [slug, setSlug] = useState<EventTarget & HTMLInputElement | any>('');
   const [description, setDescription] = useState<EventTarget & HTMLInputElement | string>();
   const [text, setText] = useState<EventTarget & HTMLInputElement | string>();
   const [tags, setTags] = useState<any>([]);
@@ -101,6 +101,10 @@ export default function UploadForm() {
     }
   }
 
+  const handleTitleBlur = (value: string) => {
+    setSlug(value.trim().toLowerCase().split(' ').join('-'));
+  }
+
   return (
     <>
       {loading ? (<Loading />) : (
@@ -131,14 +135,14 @@ export default function UploadForm() {
 
         <div className="bg-white py-4 rounded">
           <div className="relative bg-inherit">
-            <input type="text" id="title" name="title" className=" peer bg-transparent w-full rounded text-gray-900 placeholder-transparent ring-2 px-2 ring-violet-700 focus:outline-none focus:border-violet-700" onChange={(e) => setTitle(e.target.value)} placeholder="Title"/>
+            <input type="text" id="title" name="title" className=" peer bg-transparent w-full rounded text-gray-900 placeholder-transparent ring-2 px-2 ring-violet-700 focus:outline-none focus:border-violet-700" onChange={(e) => setTitle(e.target.value)}  onBlur={(e) => handleTitleBlur(e.target.value)} placeholder="Title"/>
             <label htmlFor="title" className="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-gray-500 peer-focus:text-sm transition-all">Title</label>
           </div>
         </div>
 
         <div className="bg-white py-4 rounded">
           <div className="relative bg-inherit">
-            <input type="text" id="slug" name="slug" className=" peer bg-transparent w-full rounded text-gray-900 placeholder-transparent ring-2 px-2 ring-violet-700 focus:outline-none focus:border-violet-700" onChange={(e) => setSlug(e.target.value)} placeholder="Slug"/>
+            <input value={slug} type="text" id="slug" name="slug" className=" peer bg-transparent w-full rounded text-gray-900 placeholder-transparent ring-2 px-2 ring-violet-700 focus:outline-none focus:border-violet-700" onChange={(e) => setSlug(e.target.value)} placeholder="Slug"/>
             <label htmlFor="slug" className="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-gray-500 peer-focus:text-sm transition-all">Slug</label>
           </div>
         </div>
