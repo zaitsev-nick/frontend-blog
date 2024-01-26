@@ -9,12 +9,14 @@ export async function GET(request: Request) {
     slug = request.url.split('/').pop();
   }
 
-  const tag = await db.tag.findUnique({
+  const posts = await db.post.findMany({
     where: {
-      slug: slug
+      tags: {
+        array_contains: [{'slug': slug}],
+      },
     },
   })
 
-  return NextResponse.json({ tag, ok: true }, { status: 201 });
+  return NextResponse.json(posts);
 }
 

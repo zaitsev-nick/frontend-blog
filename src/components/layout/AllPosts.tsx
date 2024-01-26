@@ -12,11 +12,18 @@ import Loading from '../Loading';
 
 const PAGE_SIZE = 21;
 
-export default function AllPosts() {
+type pageProps = {
+  isByTag?: boolean; 
+  slug?: string; 
+}
+
+export default function AllPosts(props: pageProps) {
+  const { isByTag, slug } = props;
   const router = useRouter();
   const [pageIndex, setPageIndex] = useState(1);
+  const requst = isByTag ? `tags/postsByTag/${slug}` : 'posts';
 
-  const { data, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/posts?page=${pageIndex}&per_page=${PAGE_SIZE}`, fetcher);
+  const { data, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/${requst}`, fetcher);
 
   function goToPost(id: number) {
     router.push(`${process.env.NEXT_PUBLIC_URL}/posts/${id}`);
