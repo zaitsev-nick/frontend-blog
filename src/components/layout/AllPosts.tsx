@@ -21,7 +21,7 @@ export default function AllPosts(props: pageProps) {
   const { isByTag, slug } = props;
   const router = useRouter();
   const [pageIndex, setPageIndex] = useState(1);
-  const requst = isByTag ? `tags/postsByTag/${slug}` : 'posts';
+  const requst = isByTag ? `tags/postsByTag/${slug}` : `posts?page=${pageIndex}&per_page=${PAGE_SIZE}`;
 
   const { data, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/${requst}`, fetcher);
 
@@ -56,7 +56,7 @@ export default function AllPosts(props: pageProps) {
 
   return (
     <div className="p-5 sm:p-8">
-      {isEmpty ? <p>Yay, no posts found.</p> : null}
+      {isEmpty ? <p>Yay, no articles found.</p> : null}
       {isLoading ? <Loading spinnerSize={12} /> : 
         <>
           <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
