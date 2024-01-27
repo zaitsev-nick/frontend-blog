@@ -5,10 +5,12 @@ import { useRouter } from 'next/navigation';
 import type { PostType, TagType } from '@/types/types';
 import Loading from '@/components/Loading';
 import TagsInForm from '@/components/tags/TagsInForm';
+import UploadImageModal from '@/components/modal/UploadImageModal';
 
 export default function UploadForm() {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
+  const [modalVisibility, setModalVisibility] = useState<boolean>(false);
   const [imageSrc, setImageSrc] = useState<any>();
   const [uploadData, setUploadData] = useState();
   const [title, setTitle] = useState<EventTarget & HTMLInputElement | string>();
@@ -160,6 +162,9 @@ export default function UploadForm() {
             <label htmlFor="text" className="absolute cursor-text left-0 -top-3 text-sm text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-gray-500 peer-focus:text-sm transition-all">Text</label>
           </div>
         </div>
+        <div className='mb-4 p-4'>
+          <a href='#' className='font-bold' onClick={() => setModalVisibility(true)}>Add image</a>
+        </div>
 
         <div className='bg-gray-300 p-5 mb-5'>
           <p>{`<  = &lt;   >  = &gt; `}</p>
@@ -180,6 +185,9 @@ export default function UploadForm() {
         </form>
       </div>
       )}
+        
+      {modalVisibility ? <UploadImageModal /> : null}
+    
         
     </>
   )

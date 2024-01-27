@@ -7,7 +7,6 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tag = await getTag(params);
-  console.log(tag)
  
   return {
     title: tag.name,
