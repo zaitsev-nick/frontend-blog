@@ -4,7 +4,7 @@ export interface PostType {
   title: string; 
   description: string; 
   text: string; 
-  image?: string; 
+  image: string; 
   createdAt: string;
   tags: [];
   likes: number;

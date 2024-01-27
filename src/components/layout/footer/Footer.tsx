@@ -1,4 +1,3 @@
-import ShareButtonsFooter from '@/components/share/ShareButtonsFooter';
 import Link from 'next/link';
 
 export function Footer() {
