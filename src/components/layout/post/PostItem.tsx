@@ -33,7 +33,7 @@ export function PostItem({ props }: { props: PostType }) {
         </div>
 
         <div className="px-4 lg:px-0 mt-6 text-gray-800 max-w-screen-md mx-auto text-xl leading-relaxed">
-          {parse(description)}
+          {description}
         </div>
 
         <hr className="mt-5 border-gray-300" />
