@@ -87,7 +87,7 @@ export default function UploadForm() {
       setImageSrc(data.secure_url);
       setUploadData(data);
     } catch(error) {
-
+      console.log(error)
     }
 
   }
@@ -107,9 +107,13 @@ export default function UploadForm() {
     setSlug(value.trim().toLowerCase().split(' ').join('-'));
   }
 
+  const closeModalHandler = () => {
+    setModalVisibility(false)
+  }
+
   return (
     <>
-      {loading ? (<Loading />) : (
+      {loading ? (<Loading spinnerSize={12} />) : (
         <div className="mt-6 m-auto space-y-6 w-full sm:w-8/12 md:w-7/12">
   
         <form className="" method="post" onSubmit={handleOnSubmit}>
@@ -168,8 +172,11 @@ export default function UploadForm() {
 
         <div className='bg-gray-300 p-5 mb-5'>
           <p>{`<  = &lt;   >  = &gt; `}</p>
-          <p>{`<span>code in text</span>`}</p>
-          <p>{`<pre class="language-javascript"><code> language -css -javascript -typescript etc </code></pre>`}</p>
+          <p>{`<p></p>`}</p>
+          <p>{`<h2></h2>`}</p>
+          <p>{`<strong></strong>`}</p>
+          <p>{`<span></span>`}</p>
+          <p>{`<pre class="language-javascript"><code></code></pre>`}</p>
           <p></p>
 
         </div>
@@ -186,7 +193,7 @@ export default function UploadForm() {
       </div>
       )}
         
-      {modalVisibility ? <UploadImageModal /> : null}
+      {modalVisibility ? <UploadImageModal closeModalHandler={closeModalHandler} /> : null}
     
         
     </>

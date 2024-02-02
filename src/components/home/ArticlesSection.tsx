@@ -57,7 +57,7 @@ export default function ArticlesSection() {
         onClick={(event) => {event.preventDefault(); setSize(size + 1)}}
       >
       {isLoadingMore
-        ? <Loading spinnerSize={12}/>
+        ? <Loading spinnerSize={12} />
         : isReachingEnd
         ? null
         : viewMore

@@ -1,6 +1,10 @@
 import cx from 'classnames';
 
-export default function Loading(props: any) {
+type PropTypes = {
+  spinnerSize: number
+}
+
+export default function Loading(props: PropTypes) {
   const { spinnerSize = 24 } = props;
   const width = `w-${spinnerSize}`;
   const height = `h-${spinnerSize}`;
